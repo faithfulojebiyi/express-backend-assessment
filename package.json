@@ -1,0 +1,15 @@
+{
+  "name": "nasdaily-backend-assessment",
+  "version": "1.0.0",
+  "description": "Nasdaily Backend Take Home Test",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Faithful Ojebiyi",
+  "license": "MIT",
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1"
+  }
+}
