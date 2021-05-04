@@ -1,5 +1,6 @@
 const express = require("express");
 const dotenv = require("dotenv");
+const routes = require("./routes/parkinglot");
 
 dotenv.config();
 
@@ -9,9 +10,7 @@ app.use(express.json());
 
 app.use(express.urlencoded({ extended: true }));
 
-app.get("/", async (req, res) => {
-  res.status(200).send("Welcome Nasdaily");
-});
+app.use("/", routes);
 
 const port = process.env.PORT || 5000;
 
