@@ -1,6 +1,7 @@
 const express = require("express");
 const dotenv = require("dotenv");
 const ApiError = require("./utils/ApiError");
+const errorHandler = require("./middlewares/errorHandler");
 
 dotenv.config();
 
@@ -18,13 +19,7 @@ app.all("*", (req, res, next) => {
   new ApiError(400, `Requested URL ${req.path} not found`);
 });
 
-app.use((err, re, res, next) => {
-  const statusCode = err.statusCode || 500;
-  res.status(statusCode).send({
-    message: err.message,
-    stack: err.stack,
-  });
-});
+app.use(errorHandler);
 
 const port = process.env.PORT || 5000;
 
