@@ -1,4 +1,5 @@
 const express = require("express");
+const { parkingService } = require("../services");
 
 const router = express.Router();
 
@@ -7,27 +8,27 @@ router.get("/", async (req, res) => {
 });
 
 router.get("/getcar", async (req, res) => {
-  const query = req.query.query;
+  const query = JSON.parse(req.query.query);
+  const result = await parkingService.getCar(query);
   res.status(200).send({
     message: "Park your car ",
-    data: query,
+    result,
   });
 });
 
 router.post("/parkcar", async (req, res) => {
-  const data = req.body;
+  const data = req.body.carnumber;
+  const result = await parkingService.parkCar(data);
   res.status(201).send({
-    message: "car parked",
-    slot: "slot",
-    data: data,
+    message: result,
   });
 });
 
 router.post("/unparkcar", async (req, res) => {
-  const data = req.body;
+  const data = req.body.slot;
+  const result = await parkingService.unparkCar(data);
   res.status(200).send({
-    message: "car unparked",
-    data: data,
+    message: result,
   });
 });
 

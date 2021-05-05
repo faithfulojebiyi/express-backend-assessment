@@ -1,8 +1,9 @@
 const express = require("express");
 const dotenv = require("dotenv");
-const routes = require("./routes/parkinglot");
 
 dotenv.config();
+
+const routes = require("./routes/parkinglot");
 
 const app = express();
 
