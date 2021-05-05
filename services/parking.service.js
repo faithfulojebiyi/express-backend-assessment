@@ -29,7 +29,7 @@ const parkCar = async (carnumber) => {
   if (carData.length === 0) {
     a = genRandomNum(minVal, lotSize);
     const car = {
-      slot: a,
+      slot: JSON.stringify(a),
       carNumber: carnumber,
     };
     carData.push(car);
@@ -38,7 +38,7 @@ const parkCar = async (carnumber) => {
       JSON.stringify(carData, null, 2)
     );
     console.log("is empty");
-    return cardata;
+    return car;
   } else if (carData.length === lotSize) {
     return "Parking lot full";
   } else {
@@ -49,7 +49,7 @@ const parkCar = async (carnumber) => {
       console.log(a, exists);
     } while (exists == true);
     const cardata = {
-      slot: a,
+      slot: JSON.stringify(a),
       carNumber: carnumber,
     };
     carData.push(cardata);
@@ -74,7 +74,10 @@ const unparkCar = async (slotnumber) => {
 };
 
 const getCar = async (query) => {
-  return checkCarData(carData, query);
+  if (checkCarData(carData, query).length === 0) {
+    return "Slot is free or car does not exist";
+  }
+  return checkCarData(carData, query)[0];
 };
 
 module.exports = {

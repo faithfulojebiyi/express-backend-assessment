@@ -1,7 +1,7 @@
 function isExisting(array, slot) {
   let slotTaken = false;
   slotTaken = !!array.find((car) => {
-    return car.slot === slot;
+    return car.slot === JSON.stringify(slot);
   });
   return slotTaken;
 }
