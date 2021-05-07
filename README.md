@@ -40,7 +40,7 @@ To run this project, you will need to add the following environment variables to
 
 ## API Reference
 
-#### Park a car
+### Park car
 
 ```http
   POST /api/parkcar
@@ -50,7 +50,28 @@ To run this project, you will need to add the following environment variables to
 | :---------- | :------- | :------------------------------------------ |
 | `carnumber` | `string` | **Required**. The number of the car to park |
 
-#### Park Car
+#### Response
+
+If car does not exist in parking lot
+
+```
+{
+  "message": {
+    "slot": "9",
+    "carNumber": "2012a2"
+  }
+}
+```
+
+if car exists
+
+```
+{
+  "message": "Car is already parked"
+}
+```
+
+### Upark Car
 
 ```http
   POST /api/unparkcar
@@ -60,7 +81,25 @@ To run this project, you will need to add the following environment variables to
 | :-------- | :------- | :------------------------------------------- |
 | `slot`    | `string` | **Required**. slot of the car to unpark from |
 
-#### Get Car
+#### Response
+
+If slot was filled (where 9 is the slot that was just freed)
+
+```
+{
+  "message": "Car in slot 9 is unparked. Slot 9 is now free"
+}
+```
+
+if slot was empty
+
+```
+{
+  "message": "This slot is already free"
+}
+```
+
+### Get Car
 
 ```http
   GET /api/getcar?query=Parameter
@@ -70,13 +109,38 @@ To run this project, you will need to add the following environment variables to
 | :------------------ | :------- | :---------------------------------------- |
 | `slot or carnumber` | `string` | **Required**. slot or Car number to fetch |
 
+#### Response
+
+if car exists or slot is filled
+
+```
+{
+  "message": "success",
+  "cardata": {
+    "slot": "7",
+    "carNumber": "2062a2"
+  }
+}
+```
+
+if car does not exist or slot is empty
+
+```
+{
+  "message": "success",
+  "cardata": "Slot is free or car does not exist"
+}
+```
+
 ## Features
 
 - Rate Limiter
 
+#### Throws an error with status code `429` Too many requests
+
 ## Appendix
 
-The code explanation has been done using th the code using jsDocs format
+The code explanation has been done in the code using jsDocs format
 
 ## Authors
 
