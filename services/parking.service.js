@@ -22,7 +22,7 @@ let exists = false;
 const carData = JSON.parse(JSON.stringify(JSON.parse(data), null, 2));
 
 const parkCar = async (carnumber) => {
-  console.log(carData.length);
+  // console.log(carData.length);
   if (isCarExisting(carData, carnumber)) {
     return "Car is already parked";
   }
@@ -37,16 +37,16 @@ const parkCar = async (carnumber) => {
       path.resolve(path.resolve(__dirname, "../cardata.json")),
       JSON.stringify(carData, null, 2)
     );
-    console.log("is empty");
+    // console.log("is empty");
     return car;
   } else if (carData.length === lotSize) {
     return "Parking lot full";
   } else {
     do {
-      console.log(exists);
+      // console.log(exists);
       a = genRandomNum(minVal, lotSize);
       exists = isExisting(carData, a);
-      console.log(a, exists);
+      // console.log(a, exists);
     } while (exists == true);
     const cardata = {
       slot: JSON.stringify(a),

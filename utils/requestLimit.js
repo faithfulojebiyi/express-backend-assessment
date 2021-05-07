@@ -1,5 +1,10 @@
 const MemoryStore = require("./memoryStore");
 
+/**
+ * Function to limit the number of request a user can make in a given time frame
+ * @param {Object} options - takes a list of options to configure the rate limiter
+ * @return {Array} Returns an array of updated slot data .
+ */
 function RateLimit(options) {
   options = Object.assign(
     {
@@ -165,6 +170,7 @@ function RateLimit(options) {
 
   // Backward compatibility function
   rateLimit.resetIp = rateLimit.resetKey;
+  console.log("ratelimit", rateLimit);
 
   return rateLimit;
 }

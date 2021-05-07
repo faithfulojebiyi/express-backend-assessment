@@ -1,3 +1,8 @@
+/**
+ * Function to calculate reset time.
+ * @param {Number} windowMs - milliseconds - how long to keep records of requests in memory
+ * @return {Date} Returns timestamp .
+ */
 function calculateNextResetTime(windowMs) {
   const date = new Date();
   date.setMilliseconds(date.getMilliseconds() + windowMs);
@@ -29,7 +34,7 @@ function MemoryStore(windowMs) {
   this.resetAll = function () {
     hits = {};
     resetTime = calculateNextResetTime(windowMs);
-    console.log(resetTime);
+    // console.log(resetTime);
   };
 
   // export an API to allow hits from one IP to be reset
@@ -39,7 +44,7 @@ function MemoryStore(windowMs) {
 
   // simply reset ALL hits every windowMs
   const interval = setInterval(this.resetAll, windowMs);
-  console.log(interval);
+  // console.log(interval);
   if (interval.unref) {
     interval.unref();
   }

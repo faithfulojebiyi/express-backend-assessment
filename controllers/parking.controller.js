@@ -5,7 +5,7 @@ const { isString } = require("../validators/validator");
 
 const getcar = catchAsync(async (req, res) => {
   const query = req.query.query;
-  console.log(query);
+  // console.log(query);
   if (!isString(query)) {
     throw new ApiError(500, "car number or slot should be a string");
   }
