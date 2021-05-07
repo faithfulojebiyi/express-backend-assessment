@@ -14,7 +14,7 @@ const data = fs.readFileSync(
   path.resolve(path.resolve(__dirname, "../cardata.json"))
 );
 
-console.log(lotSize);
+// console.log(lotSize);
 const minVal = 1;
 let a = 0;
 let exists = false;

@@ -18,7 +18,7 @@ function RateLimit(options) {
       skipSuccessfulRequests: false, // Do not count successful requests (status < 400)
       // allows to create custom keys (by default user IP is used)
       keyGenerator: function (req /*, res*/) {
-        console.log(req.ip);
+        // console.log(req.ip);
         return req.ip;
       },
       skip: function (/*req, res*/) {
@@ -70,7 +70,7 @@ function RateLimit(options) {
             typeof options.max === "function"
               ? options.max(req, res)
               : options.max;
-          console.log(maxResult);
+          // console.log(maxResult);
           Promise.resolve(maxResult)
             .then((max) => {
               req.rateLimit = {
@@ -170,7 +170,7 @@ function RateLimit(options) {
 
   // Backward compatibility function
   rateLimit.resetIp = rateLimit.resetKey;
-  console.log("ratelimit", rateLimit);
+  // console.log("rateerlimit", rateLimit);
 
   return rateLimit;
 }
