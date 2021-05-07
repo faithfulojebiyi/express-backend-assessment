@@ -6,7 +6,8 @@ const errorHandler = require("./middlewares/error");
 
 dotenv.config();
 
-const routes = require("./routes/parkinglot");
+const route = require("./routes/welcome");
+const api = require("./routes/parkinglot");
 
 const app = express();
 
@@ -16,7 +17,8 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use(limiter);
 
-app.use("/", routes);
+app.use("/", route);
+app.use("/api", api);
 
 app.all("*", (req, res, next) => {
   new ApiError(400, `Requested URL ${req.path} not found`);
