@@ -65,7 +65,7 @@ function RateLimit(options) {
             typeof options.max === "function"
               ? options.max(req, res)
               : options.max;
-
+          console.log(maxResult);
           Promise.resolve(maxResult)
             .then((max) => {
               req.rateLimit = {

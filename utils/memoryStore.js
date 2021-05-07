@@ -7,7 +7,7 @@ function calculateNextResetTime(windowMs) {
 function MemoryStore(windowMs) {
   let hits = {};
   let resetTime = calculateNextResetTime(windowMs);
-  console.log(resetTime);
+  // console.log(resetTime);
 
   this.incr = function (key, cb) {
     if (hits[key]) {
@@ -29,6 +29,7 @@ function MemoryStore(windowMs) {
   this.resetAll = function () {
     hits = {};
     resetTime = calculateNextResetTime(windowMs);
+    console.log(resetTime);
   };
 
   // export an API to allow hits from one IP to be reset
@@ -38,6 +39,7 @@ function MemoryStore(windowMs) {
 
   // simply reset ALL hits every windowMs
   const interval = setInterval(this.resetAll, windowMs);
+  console.log(interval);
   if (interval.unref) {
     interval.unref();
   }
