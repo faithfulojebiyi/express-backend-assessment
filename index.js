@@ -1,7 +1,8 @@
 const express = require("express");
 const dotenv = require("dotenv");
 const ApiError = require("./utils/ApiError");
-const errorHandler = require("./middlewares/errorHandler");
+const limiter = require("./middlewares/ratelimit");
+const errorHandler = require("./middlewares/error");
 
 dotenv.config();
 
@@ -12,6 +13,8 @@ const app = express();
 app.use(express.json());
 
 app.use(express.urlencoded({ extended: true }));
+
+app.use(limiter);
 
 app.use("/", routes);
 
